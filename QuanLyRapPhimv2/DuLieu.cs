@@ -26,7 +26,7 @@ namespace QuanLyRapPhimv2
             LoadPhimList();
             LoadPhongChieuList();
             LoadSuatChieuList();
-            LoadDinhDangPhim();
+            LoadDinhDangPhimList();
             LoadMonAnList();
            
             LoadVeBanList();
@@ -258,7 +258,7 @@ namespace QuanLyRapPhimv2
             cbLoaiGhe.DisplayMember = "ten_ghe";
             cbLoaiGhe.ValueMember = "id";
         }
-       
+
 
 
 
@@ -266,8 +266,26 @@ namespace QuanLyRapPhimv2
 
         void LoadGheNgoiList()
         {
-           
+            string query = "SELECT id, vi_tri_day, vi_tri_cot, da_chon, phong_chieu_id, loai_ghe_id FROM ghe_ngoi";
+            DataProvider provider = new DataProvider();
+            DataTable data = provider.ExecuteQuery(query);
+            dtgvGheNgoi.DataSource = data;
+
+            dtgvGheNgoi.Columns["id"].HeaderText = "ID Ghế Ngồi";
+            dtgvGheNgoi.Columns["vi_tri_day"].HeaderText = "Vị Trí Dãy";
+            dtgvGheNgoi.Columns["vi_tri_cot"].HeaderText = "Vị Trí Cột";
+            dtgvGheNgoi.Columns["da_chon"].HeaderText = "Đã Chọn";
+            dtgvGheNgoi.Columns["phong_chieu_id"].HeaderText = "ID Phòng Chiếu";
+            dtgvGheNgoi.Columns["loai_ghe_id"].HeaderText = "ID Loại Ghế";
+
+            dtgvGheNgoi.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dtgvGheNgoi.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dtgvGheNgoi.DefaultCellStyle.Font = new System.Drawing.Font("Arial", 8F);
+            dtgvGheNgoi.DefaultCellStyle.BackColor = System.Drawing.Color.LightGray;
+            dtgvGheNgoi.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.White;
+            dtgvGheNgoi.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
         }
+
 
 
 
@@ -276,7 +294,7 @@ namespace QuanLyRapPhimv2
           
         }
 
-        
+
 
 
 
@@ -284,30 +302,106 @@ namespace QuanLyRapPhimv2
 
         void LoadPhimList()
         {
-           
+            string query = "SELECT id, ten, thoi_luong, loai_phim_id FROM phim";
+            DataProvider provider = new DataProvider();
+            DataTable data = provider.ExecuteQuery(query);
+            dtgvPhim.DataSource = data;
+
+            dtgvPhim.Columns["id"].HeaderText = "ID Phim";
+            dtgvPhim.Columns["ten"].HeaderText = "Tên Phim";
+            dtgvPhim.Columns["thoi_luong"].HeaderText = "Thời Lượng";
+            dtgvPhim.Columns["loai_phim_id"].HeaderText = "Loại Phim";
+
+            dtgvPhim.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dtgvPhim.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dtgvPhim.DefaultCellStyle.Font = new System.Drawing.Font("Arial", 8F);
+            dtgvPhim.DefaultCellStyle.BackColor = System.Drawing.Color.LightGray;
+            dtgvPhim.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.White;
+            dtgvPhim.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
         }
 
 
         void LoadPhongChieuList()
         {
-          
+            string query = "SELECT id, so_luong_day, so_luong_cot FROM phong_chieu";
+            DataProvider provider = new DataProvider();
+            DataTable data = provider.ExecuteQuery(query);
+            dtgvPhongChieu.DataSource = data;
 
+            dtgvPhongChieu.Columns["id"].HeaderText = "ID Phòng Chiếu";
+            dtgvPhongChieu.Columns["so_luong_day"].HeaderText = "Số Lượng Dãy";
+            dtgvPhongChieu.Columns["so_luong_cot"].HeaderText = "Số Lượng Cột";
+
+            dtgvPhongChieu.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dtgvPhongChieu.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dtgvPhongChieu.DefaultCellStyle.Font = new System.Drawing.Font("Arial", 8F);
+            dtgvPhongChieu.DefaultCellStyle.BackColor = System.Drawing.Color.LightGray;
+            dtgvPhongChieu.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.White;
+            dtgvPhongChieu.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
         }
+
         void LoadSuatChieuList()
         {
-          
+            string query = "SELECT id, gio_bat_dau, gio_ket_thuc, ngay_chieu, phim_id, phong_chieu_id, dinh_dang_phim_id FROM suat_chieu";
+            DataProvider provider = new DataProvider();
+            DataTable data = provider.ExecuteQuery(query);
+            dtgvSuatChieu.DataSource = data;
 
+            dtgvSuatChieu.Columns["id"].HeaderText = "ID Suất Chiếu";
+            dtgvSuatChieu.Columns["gio_bat_dau"].HeaderText = "Giờ Bắt Đầu";
+            dtgvSuatChieu.Columns["gio_ket_thuc"].HeaderText = "Giờ Kết Thúc";
+            dtgvSuatChieu.Columns["ngay_chieu"].HeaderText = "Ngày Chiếu";
+            dtgvSuatChieu.Columns["phim_id"].HeaderText = "ID Phim";
+            dtgvSuatChieu.Columns["phong_chieu_id"].HeaderText = "ID Phòng Chiếu";
+            dtgvSuatChieu.Columns["dinh_dang_phim_id"].HeaderText = "ID Định Dạng Phim";
 
+            dtgvSuatChieu.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dtgvSuatChieu.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dtgvSuatChieu.DefaultCellStyle.Font = new System.Drawing.Font("Arial", 8F);
+            dtgvSuatChieu.DefaultCellStyle.BackColor = System.Drawing.Color.LightGray;
+            dtgvSuatChieu.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.White;
+            dtgvSuatChieu.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
         }
 
-        void LoadDinhDangPhim()
+
+        void LoadDinhDangPhimList()
         {
-           
+            string query = "SELECT id, ten, phu_thu FROM dinh_dang_phim";
+            DataProvider provider = new DataProvider();
+            DataTable data = provider.ExecuteQuery(query);
+            dtgvDinhDangPhim.DataSource = data;
+
+            dtgvDinhDangPhim.Columns["id"].HeaderText = "ID Định Dạng Phim";
+            dtgvDinhDangPhim.Columns["ten"].HeaderText = "Tên Định Dạng Phim";
+            dtgvDinhDangPhim.Columns["phu_thu"].HeaderText = "Phụ Thu";
+
+            dtgvDinhDangPhim.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dtgvDinhDangPhim.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dtgvDinhDangPhim.DefaultCellStyle.Font = new System.Drawing.Font("Arial", 8F);
+            dtgvDinhDangPhim.DefaultCellStyle.BackColor = System.Drawing.Color.LightGray;
+            dtgvDinhDangPhim.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.White;
+            dtgvDinhDangPhim.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
         }
+
 
         void LoadMonAnList()
         {
-           
+            string query = "SELECT id, ten, gia, loai_mon_an_id FROM mon_an";
+            DataProvider provider = new DataProvider();
+            DataTable data = provider.ExecuteQuery(query);
+            dtgvMonAn.DataSource = data;
+
+            dtgvMonAn.Columns["id"].HeaderText = "ID Món Ăn";
+            dtgvMonAn.Columns["ten"].HeaderText = "Tên Món Ăn";
+            dtgvMonAn.Columns["gia"].HeaderText = "Giá";
+            dtgvMonAn.Columns["loai_mon_an_id"].HeaderText = "ID Loại Món Ăn";
+
+            dtgvMonAn.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dtgvMonAn.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dtgvMonAn.DefaultCellStyle.Font = new System.Drawing.Font("Arial", 8F);
+            dtgvMonAn.DefaultCellStyle.BackColor = System.Drawing.Color.LightGray;
+            dtgvMonAn.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.White;
+            dtgvMonAn.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
         }
 
 
@@ -317,67 +411,80 @@ namespace QuanLyRapPhimv2
 
 
 
-      
 
-     
+
+
+
 
         private void btnSua1_Click(object sender, EventArgs e)
         {
+            string idPhongChieu = txtMaPhong.Text;
+            int soLuongDay = int.Parse(txtSoLuongDay.Text);
+            int soLuongCot = int.Parse(txtSoLuongCot.Text);
+
+            string connectionSTR = "Data Source=HUYNHTHANG\\SQLEXPRESS;Initial Catalog=QuanlyRapChieuPhimV2;Integrated Security=True";
+
             using (SqlConnection connection = new SqlConnection(connectionSTR))
             {
                 connection.Open();
-                string sqlUpdate = "UPDATE phong_chieu SET so_luong_day = @so_luong_day, so_luong_cot = @so_luong_cot WHERE id = @id";
+                string query = "UPDATE phong_chieu SET so_luong_day = @SoLuongDay, so_luong_cot = @SoLuongCot WHERE id = @IDPhongChieu";
 
-                using (SqlCommand cmd = new SqlCommand(sqlUpdate, connection))
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
+                    command.Parameters.AddWithValue("@IDPhongChieu", idPhongChieu);
+                    command.Parameters.AddWithValue("@SoLuongDay", soLuongDay);
+                    command.Parameters.AddWithValue("@SoLuongCot", soLuongCot);
+
                     try
                     {
-                        string id = txtMaPhong.Text;
-                        string so_luong_day = txtSoLuongDay.Text;
-                        string so_luong_cot = txtSoLuongCot.Text;
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("Cập nhật phòng chiếu thành công!");
 
-                        cmd.Parameters.AddWithValue("@id", id);
-                        cmd.Parameters.AddWithValue("@so_luong_day", so_luong_day);
-                        cmd.Parameters.AddWithValue("@so_luong_cot", so_luong_cot);
-
-                        int count = cmd.ExecuteNonQuery();
-                        MessageBox.Show($"{count} đã sửa phòng chiếu thành công!");
-                        LoadPhongChieuList(); // Refresh the room list
+                        // Refresh the DataGridView
+                        LoadPhongChieuList();
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Xảy ra lỗi: {ex.Message}");
+                        MessageBox.Show("Lỗi khi cập nhật phòng chiếu: " + ex.Message);
                     }
                 }
             }
         }
+
+
 
         private void btnXoa1_Click(object sender, EventArgs e)
         {
+            string idPhongChieu = txtMaPhong.Text;
+
+            string connectionSTR = "Data Source=HUYNHTHANG\\SQLEXPRESS;Initial Catalog=QuanlyRapChieuPhimV2;Integrated Security=True";
+
             using (SqlConnection connection = new SqlConnection(connectionSTR))
             {
                 connection.Open();
-                string sqlDelete = "DELETE FROM phong_chieu WHERE id = @id";
+                string query = "DELETE FROM phong_chieu WHERE id = @IDPhongChieu";
 
-                using (SqlCommand cmd = new SqlCommand(sqlDelete, connection))
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
+                    command.Parameters.AddWithValue("@IDPhongChieu", idPhongChieu);
+
                     try
                     {
-                        string id = txtMaPhong.Text;
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("Xóa phòng chiếu thành công!");
 
-                        cmd.Parameters.AddWithValue("@id", id);
-
-                        int count = cmd.ExecuteNonQuery();
-                        MessageBox.Show($"{count} đã xóa phòng chiếu thành công!");
-                        LoadPhongChieuList(); // Refresh the room list
+                        // Refresh the DataGridView
+                        LoadPhongChieuList();
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Xảy ra lỗi: {ex.Message}");
+                        MessageBox.Show("Lỗi khi xóa phòng chiếu: " + ex.Message);
                     }
                 }
             }
         }
+
+
 
         private void btnTim_Click(object sender, EventArgs e)
         {
@@ -408,12 +515,39 @@ namespace QuanLyRapPhimv2
 
         private void btnTim1_Click(object sender, EventArgs e)
         {
-            string keyword = txtTim1.Text;
+            string searchKeyword = txtTim1.Text.Trim();
 
-            string query = $"SELECT * FROM dbo.phong_chieu WHERE id LIKE '%{keyword}%' OR so_luong_day LIKE '%{keyword}%'";
-            DataProvider provider = new DataProvider();
-            dtgvPhongChieu.DataSource = provider.ExecuteQuery(query);
+            string connectionSTR = "Data Source=HUYNHTHANG\\SQLEXPRESS;Initial Catalog=QuanlyRapChieuPhimV2;Integrated Security=True";
+
+            using (SqlConnection connection = new SqlConnection(connectionSTR))
+            {
+                connection.Open();
+                string query = "SELECT id, so_luong_day, so_luong_cot FROM phong_chieu WHERE id LIKE '%' + @SearchKeyword + '%'";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@SearchKeyword", searchKeyword);
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    dtgvPhongChieu.DataSource = dataTable;
+
+                    // Customize DataGridView appearance (optional)
+                    dtgvPhongChieu.Columns["id"].HeaderText = "ID Phòng Chiếu";
+                    dtgvPhongChieu.Columns["so_luong_day"].HeaderText = "Số Lượng Dãy";
+                    dtgvPhongChieu.Columns["so_luong_cot"].HeaderText = "Số Lượng Cột";
+
+                    dtgvPhongChieu.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    dtgvPhongChieu.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    dtgvPhongChieu.DefaultCellStyle.Font = new System.Drawing.Font("Arial", 8F);
+                    dtgvPhongChieu.DefaultCellStyle.BackColor = System.Drawing.Color.LightGray;
+                    dtgvPhongChieu.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.White;
+                    dtgvPhongChieu.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+                }
+            }
         }
+
 
 
 
@@ -426,6 +560,16 @@ namespace QuanLyRapPhimv2
 
         private void btnThem2_Click(object sender, EventArgs e)
         {
+            string id = txtMaSuatChieu.Text;
+            TimeSpan gio_bat_dau = dtpGioBatDau.Value.TimeOfDay; // DateTimePicker for start time
+            TimeSpan gio_ket_thuc = dtpGioKetThuc.Value.TimeOfDay; // DateTimePicker for end time
+            DateTime ngay_chieu = dtpNgayChieu.Value.Date; // DateTimePicker for show date
+            string phim_id = txtMaPhim1.Text;
+            int phong_chieu_id = int.Parse(txtMaPhong2.Text);
+            string dinh_dang_phim_id = txtMaDinhDang.Text;
+
+            string connectionSTR = "Data Source=HUYNHTHANG\\SQLEXPRESS;Initial Catalog=QuanlyRapChieuPhimV2;Integrated Security=True";
+
             using (SqlConnection connection = new SqlConnection(connectionSTR))
             {
                 connection.Open();
@@ -434,27 +578,19 @@ namespace QuanLyRapPhimv2
 
                 using (SqlCommand cmd = new SqlCommand(sqlInsert, connection))
                 {
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@gio_bat_dau", gio_bat_dau);
+                    cmd.Parameters.AddWithValue("@gio_ket_thuc", gio_ket_thuc);
+                    cmd.Parameters.AddWithValue("@ngay_chieu", ngay_chieu);
+                    cmd.Parameters.AddWithValue("@phim_id", phim_id);
+                    cmd.Parameters.AddWithValue("@phong_chieu_id", phong_chieu_id);
+                    cmd.Parameters.AddWithValue("@dinh_dang_phim_id", dinh_dang_phim_id);
+
                     try
                     {
-                        string id = txtMaSuatChieu.Text;
-                        TimeSpan gio_bat_dau = dtpGioBatDau.Value.TimeOfDay; // DateTimePicker for start time
-                        TimeSpan gio_ket_thuc = dtpGioKetThuc.Value.TimeOfDay; // DateTimePicker for end time
-                        DateTime ngay_chieu = dtpNgayChieu.Value.Date; // DateTimePicker for show date
-                        string phim_id = txtMaPhim1.Text;
-                        int phong_chieu_id = int.Parse(txtMaPhong2.Text);
-                        string dinh_dang_phim_id = txtMaDinhDang.Text;
-
-                        cmd.Parameters.AddWithValue("@id", id);
-                        cmd.Parameters.AddWithValue("@gio_bat_dau", gio_bat_dau);
-                        cmd.Parameters.AddWithValue("@gio_ket_thuc", gio_ket_thuc);
-                        cmd.Parameters.AddWithValue("@ngay_chieu", ngay_chieu);
-                        cmd.Parameters.AddWithValue("@phim_id", phim_id);
-                        cmd.Parameters.AddWithValue("@phong_chieu_id", phong_chieu_id);
-                        cmd.Parameters.AddWithValue("@dinh_dang_phim_id", dinh_dang_phim_id);
-
                         int count = cmd.ExecuteNonQuery();
                         MessageBox.Show($"{count} suất chiếu đã được thêm thành công!");
-                        LoadSuatChieuList(); // Làm mới danh sách suất chiếu
+                        LoadSuatChieuList(); // Refresh the showtime list
                     }
                     catch (Exception ex)
                     {
@@ -464,8 +600,19 @@ namespace QuanLyRapPhimv2
             }
         }
 
+
         private void btnSua2_Click(object sender, EventArgs e)
         {
+            string id = txtMaSuatChieu.Text;
+            TimeSpan gio_bat_dau = dtpGioBatDau.Value.TimeOfDay; // DateTimePicker for start time
+            TimeSpan gio_ket_thuc = dtpGioKetThuc.Value.TimeOfDay; // DateTimePicker for end time
+            DateTime ngay_chieu = dtpNgayChieu.Value.Date; // DateTimePicker for show date
+            string phim_id = txtMaPhim1.Text;
+            int phong_chieu_id = int.Parse(txtMaPhong2.Text);
+            string dinh_dang_phim_id = txtMaDinhDang.Text;
+
+            string connectionSTR = "Data Source=HUYNHTHANG\\SQLEXPRESS;Initial Catalog=QuanlyRapChieuPhimV2;Integrated Security=True";
+
             using (SqlConnection connection = new SqlConnection(connectionSTR))
             {
                 connection.Open();
@@ -474,27 +621,19 @@ namespace QuanLyRapPhimv2
 
                 using (SqlCommand cmd = new SqlCommand(sqlUpdate, connection))
                 {
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@gio_bat_dau", gio_bat_dau);
+                    cmd.Parameters.AddWithValue("@gio_ket_thuc", gio_ket_thuc);
+                    cmd.Parameters.AddWithValue("@ngay_chieu", ngay_chieu);
+                    cmd.Parameters.AddWithValue("@phim_id", phim_id);
+                    cmd.Parameters.AddWithValue("@phong_chieu_id", phong_chieu_id);
+                    cmd.Parameters.AddWithValue("@dinh_dang_phim_id", dinh_dang_phim_id);
+
                     try
                     {
-                        string id = txtMaSuatChieu.Text;
-                        TimeSpan gio_bat_dau = dtpGioBatDau.Value.TimeOfDay; // DateTimePicker for start time
-                        TimeSpan gio_ket_thuc = dtpGioKetThuc.Value.TimeOfDay; // DateTimePicker for end time
-                        DateTime ngay_chieu = dtpNgayChieu.Value.Date; // DateTimePicker for show date
-                        string phim_id = txtMaPhim1.Text;
-                        int phong_chieu_id = int.Parse(txtMaPhong2.Text);
-                        string dinh_dang_phim_id = txtMaDinhDang.Text;
-
-                        cmd.Parameters.AddWithValue("@id", id);
-                        cmd.Parameters.AddWithValue("@gio_bat_dau", gio_bat_dau);
-                        cmd.Parameters.AddWithValue("@gio_ket_thuc", gio_ket_thuc);
-                        cmd.Parameters.AddWithValue("@ngay_chieu", ngay_chieu);
-                        cmd.Parameters.AddWithValue("@phim_id", phim_id);
-                        cmd.Parameters.AddWithValue("@phong_chieu_id", phong_chieu_id);
-                        cmd.Parameters.AddWithValue("@dinh_dang_phim_id", dinh_dang_phim_id);
-
                         int count = cmd.ExecuteNonQuery();
                         MessageBox.Show($"{count} suất chiếu đã được cập nhật thành công!");
-                        LoadSuatChieuList(); // Làm mới danh sách suất chiếu
+                        LoadSuatChieuList(); // Refresh the showtime list
                     }
                     catch (Exception ex)
                     {
@@ -504,8 +643,13 @@ namespace QuanLyRapPhimv2
             }
         }
 
+
         private void btnXoa2_Click(object sender, EventArgs e)
         {
+            string id = txtMaSuatChieu.Text;
+
+            string connectionSTR = "Data Source=HUYNHTHANG\\SQLEXPRESS;Initial Catalog=QuanlyRapChieuPhimV2;Integrated Security=True";
+
             using (SqlConnection connection = new SqlConnection(connectionSTR))
             {
                 connection.Open();
@@ -513,15 +657,13 @@ namespace QuanLyRapPhimv2
 
                 using (SqlCommand cmd = new SqlCommand(sqlDelete, connection))
                 {
+                    cmd.Parameters.AddWithValue("@id", id);
+
                     try
                     {
-                        string id = txtMaSuatChieu.Text;
-
-                        cmd.Parameters.AddWithValue("@id", id);
-
                         int count = cmd.ExecuteNonQuery();
                         MessageBox.Show($"{count} suất chiếu đã được xóa thành công!");
-                        LoadSuatChieuList(); // Làm mới danh sách suất chiếu
+                        LoadSuatChieuList(); // Refresh the showtime list
                     }
                     catch (Exception ex)
                     {
@@ -530,6 +672,7 @@ namespace QuanLyRapPhimv2
                 }
             }
         }
+
 
         private void tpPhim_Click(object sender, EventArgs e)
         {
@@ -584,46 +727,43 @@ namespace QuanLyRapPhimv2
 
         private void btnTim3_Click(object sender, EventArgs e)
         {
-            string keyword = txtTim3.Text.Trim();
+            string searchKeyword = txtTim3.Text.Trim();
+
+            string connectionSTR = "Data Source=HUYNHTHANG\\SQLEXPRESS;Initial Catalog=QuanlyRapChieuPhimV2;Integrated Security=True";
 
             using (SqlConnection connection = new SqlConnection(connectionSTR))
             {
                 connection.Open();
-                string query = @"
-            SELECT mon_an.id, mon_an.ten, mon_an.gia, loai_mon_an.ten AS loai
-            FROM mon_an
-            JOIN loai_mon_an ON mon_an.loai_mon_an_id = loai_mon_an.id
-            WHERE mon_an.ten LIKE @keyword OR loai_mon_an.ten LIKE @keyword";
+               
+                string sqlSearch = "SELECT id, ten, gia, loai_mon_an_id FROM mon_an WHERE ten LIKE '%' + @searchKeyword + '%'";
 
-                using (SqlCommand cmd = new SqlCommand(query, connection))
+                using (SqlCommand cmd = new SqlCommand(sqlSearch, connection))
                 {
-                    try
-                    {
-                        cmd.Parameters.AddWithValue("@keyword", "%" + keyword + "%");
+                    cmd.Parameters.AddWithValue("@searchKeyword", searchKeyword);
 
-                        DataTable data = new DataTable();
-                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                        adapter.Fill(data);
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    dtgvMonAn.DataSource = dataTable;
 
-                        dtgvMonAn.DataSource = data;
+                    // Customize DataGridView appearance (optional)
+                    dtgvMonAn.Columns["id"].HeaderText = "ID Món Ăn";
+                    dtgvMonAn.Columns["ten"].HeaderText = "Tên Món Ăn";
+                    dtgvMonAn.Columns["gia"].HeaderText = "Giá";
+                    dtgvMonAn.Columns["loai_mon_an_id"].HeaderText = "Loại Món Ăn";
 
-                        dtgvMonAn.Columns["id"].HeaderText = "ID Món Ăn";
-                        dtgvMonAn.Columns["ten"].HeaderText = "Tên Món Ăn";
-                        dtgvMonAn.Columns["gia"].HeaderText = "Giá";
-                        dtgvMonAn.Columns["loai"].HeaderText = "Loại Món Ăn";
-                        dtgvMonAn.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                        dtgvMonAn.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        dtgvMonAn.DefaultCellStyle.Font = new System.Drawing.Font("Arial", 8F);
-                        dtgvMonAn.DefaultCellStyle.BackColor = System.Drawing.Color.LightGray;
-                        dtgvMonAn.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.White;
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Xảy ra lỗi khi tìm kiếm: {ex.Message}");
-                    }
+                    dtgvMonAn.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    dtgvMonAn.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    dtgvMonAn.DefaultCellStyle.Font = new System.Drawing.Font("Arial", 8F);
+                    dtgvMonAn.DefaultCellStyle.BackColor = System.Drawing.Color.LightGray;
+                    dtgvMonAn.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.White;
+                    dtgvMonAn.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
                 }
             }
         }
+
+
+
 
         private void fillByToolStripButton_Click(object sender, EventArgs e)
         {
@@ -808,37 +948,31 @@ namespace QuanLyRapPhimv2
 
         private void btnThemGhe_Click(object sender, EventArgs e)
         {
+            string idGhe = txtMaGhe1.Text;
+            int viTriDay = int.Parse(txtViTriDay.Text);
+            int viTriCot = int.Parse(txtViTriCot.Text);
+            bool daChon = chkDaChon.Checked;
+            int phongChieuID = int.Parse(txtMaPhongChieu1.Text);
+            int loaiGheID = (int)cbLoaiGhe.SelectedValue;
+
+            string connectionSTR = "Data Source=HUYNHTHANG\\SQLEXPRESS;Initial Catalog=QuanlyRapChieuPhimV2;Integrated Security=True";
+
             using (SqlConnection connection = new SqlConnection(connectionSTR))
             {
                 connection.Open();
-                string sqlInsert = @"
-            INSERT INTO ghe_ngoi (id, vi_tri_day, vi_tri_cot, da_chon, phong_chieu_id, loai_ghe_id)
-            VALUES (@id, @vi_tri_day, @vi_tri_cot, @da_chon, @phong_chieu_id, @loai_ghe_id)";
-
-
+                string sqlInsert = "INSERT INTO ghe_ngoi (id, vi_tri_day, vi_tri_cot, da_chon, phong_chieu_id, loai_ghe_id) VALUES (@id, @vi_tri_day, @vi_tri_cot, @da_chon, @phong_chieu_id, @loai_ghe_id)";
 
                 using (SqlCommand cmd = new SqlCommand(sqlInsert, connection))
                 {
+                    cmd.Parameters.AddWithValue("@id", idGhe);
+                    cmd.Parameters.AddWithValue("@vi_tri_day", viTriDay);
+                    cmd.Parameters.AddWithValue("@vi_tri_cot", viTriCot);
+                    cmd.Parameters.AddWithValue("@da_chon", daChon);
+                    cmd.Parameters.AddWithValue("@phong_chieu_id", phongChieuID);
+                    cmd.Parameters.AddWithValue("@loai_ghe_id", loaiGheID);
+
                     try
                     {
-                        int id = int.Parse(txtMaGhe1.Text);
-                        int viTriDay = int.Parse(txtViTriDay.Text);
-                        int viTriCot = int.Parse(txtViTriCot.Text);
-                        bool daChon = chkDaChon.Checked;
-
-
-                        int phongChieuID = int.Parse(txtMaPhongChieu1.Text);
-                        int loaiGheID = (int)cbLoaiGhe.SelectedValue;
-
-                        cmd.Parameters.AddWithValue("@id", id);
-                        cmd.Parameters.AddWithValue("@vi_tri_day", viTriDay);
-                        cmd.Parameters.AddWithValue("@vi_tri_cot", viTriCot);
-                        cmd.Parameters.AddWithValue("@da_chon", daChon);
-
-
-                        cmd.Parameters.AddWithValue("@phong_chieu_id", phongChieuID);
-                        cmd.Parameters.AddWithValue("@loai_ghe_id", loaiGheID);
-
                         int count = cmd.ExecuteNonQuery();
                         MessageBox.Show($"{count} ghế ngồi đã được thêm thành công!");
                         LoadGheNgoiList(); // Làm mới danh sách ghế ngồi
@@ -852,75 +986,71 @@ namespace QuanLyRapPhimv2
         }
 
 
+
         private void btnTim_Click_1(object sender, EventArgs e)
+{
+    string searchKeyword = txtTim.Text.Trim();
+
+    string connectionSTR = "Data Source=HUYNHTHANG\\SQLEXPRESS;Initial Catalog=QuanlyRapChieuPhimV2;Integrated Security=True";
+
+    using (SqlConnection connection = new SqlConnection(connectionSTR))
+    {
+        connection.Open();
+        string query = "SELECT id, ten, thoi_luong, loai_phim_id FROM phim WHERE ten LIKE '%' + @SearchKeyword + '%'";
+
+        using (SqlCommand command = new SqlCommand(query, connection))
         {
-            string keyword = txtTim.Text.Trim();
+            command.Parameters.AddWithValue("@SearchKeyword", searchKeyword);
 
-            using (SqlConnection connection = new SqlConnection(connectionSTR))
-            {
-                connection.Open();
-                string query = @"
-            SELECT * FROM phim
-            WHERE ten LIKE @keyword OR thoi_luong LIKE @keyword";
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            DataTable dataTable = new DataTable();
+            adapter.Fill(dataTable);
+            dtgvPhim.DataSource = dataTable;
 
-                using (SqlCommand cmd = new SqlCommand(query, connection))
-                {
-                    try
-                    {
-                        cmd.Parameters.AddWithValue("@keyword", "%" + keyword + "%");
+            // Customize DataGridView appearance (optional)
+            dtgvPhim.Columns["id"].HeaderText = "ID Phim";
+            dtgvPhim.Columns["ten"].HeaderText = "Tên Phim";
+            dtgvPhim.Columns["thoi_luong"].HeaderText = "Thời Lượng";
+            dtgvPhim.Columns["loai_phim_id"].HeaderText = "Loại Phim";
 
-                        DataTable data = new DataTable();
-                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                        adapter.Fill(data);
-
-                        dtgvPhim.DataSource = data;
-
-                        // Cấu hình DataGridView
-                        dtgvPhim.Columns["id"].HeaderText = "ID Phim";
-                        dtgvPhim.Columns["ten"].HeaderText = "Tên Phim";
-                        dtgvPhim.Columns["thoi_luong"].HeaderText = "Thời Lượng";
-                        dtgvPhim.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                        dtgvPhim.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        dtgvPhim.DefaultCellStyle.Font = new System.Drawing.Font("Arial", 8F);
-                        dtgvPhim.DefaultCellStyle.BackColor = System.Drawing.Color.LightGray;
-                        dtgvPhim.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.White;
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Xảy ra lỗi khi tìm kiếm: {ex.Message}");
-                    }
-                }
-            }
+            dtgvPhim.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dtgvPhim.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dtgvPhim.DefaultCellStyle.Font = new System.Drawing.Font("Arial", 8F);
+            dtgvPhim.DefaultCellStyle.BackColor = System.Drawing.Color.LightGray;
+            dtgvPhim.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.White;
+            dtgvPhim.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
         }
+    }
+}
+
 
         private void btnSuaGhe_Click(object sender, EventArgs e)
         {
+            string idGhe = txtMaGhe1.Text;
+            int viTriDay = int.Parse(txtViTriDay.Text);
+            int viTriCot = int.Parse(txtViTriCot.Text);
+            bool daChon = chkDaChon.Checked;
+            int phongChieuID = int.Parse(txtMaPhongChieu1.Text);
+            int loaiGheID = (int)cbLoaiGhe.SelectedValue;
+
+            string connectionSTR = "Data Source=HUYNHTHANG\\SQLEXPRESS;Initial Catalog=QuanlyRapChieuPhimV2;Integrated Security=True";
+
             using (SqlConnection connection = new SqlConnection(connectionSTR))
             {
                 connection.Open();
-                string sqlUpdate = @"
-            UPDATE ghe_ngoi 
-            SET vi_tri_day = @vi_tri_day, vi_tri_cot = @vi_tri_cot, da_chon = @da_chon, phong_chieu_id = @phong_chieu_id, loai_ghe_id = @loai_ghe_id 
-            WHERE id = @id";
+                string sqlUpdate = "UPDATE ghe_ngoi SET vi_tri_day = @vi_tri_day, vi_tri_cot = @vi_tri_cot, da_chon = @da_chon, phong_chieu_id = @phong_chieu_id, loai_ghe_id = @loai_ghe_id WHERE id = @id";
 
                 using (SqlCommand cmd = new SqlCommand(sqlUpdate, connection))
                 {
+                    cmd.Parameters.AddWithValue("@id", idGhe);
+                    cmd.Parameters.AddWithValue("@vi_tri_day", viTriDay);
+                    cmd.Parameters.AddWithValue("@vi_tri_cot", viTriCot);
+                    cmd.Parameters.AddWithValue("@da_chon", daChon);
+                    cmd.Parameters.AddWithValue("@phong_chieu_id", phongChieuID);
+                    cmd.Parameters.AddWithValue("@loai_ghe_id", loaiGheID);
+
                     try
                     {
-                        int id = int.Parse(txtMaGhe1.Text);
-                        int viTriDay = int.Parse(txtViTriDay.Text);
-                        int viTriCot = int.Parse(txtViTriCot.Text);
-                        bool daChon = chkDaChon.Checked;
-                        int phongChieuID = int.Parse(txtMaPhongChieu1.Text);
-                        int loaiGheID = (int)cbLoaiGhe.SelectedValue;
-
-                        cmd.Parameters.AddWithValue("@id", id);
-                        cmd.Parameters.AddWithValue("@vi_tri_day", viTriDay);
-                        cmd.Parameters.AddWithValue("@vi_tri_cot", viTriCot);
-                        cmd.Parameters.AddWithValue("@da_chon", daChon);
-                        cmd.Parameters.AddWithValue("@phong_chieu_id", phongChieuID);
-                        cmd.Parameters.AddWithValue("@loai_ghe_id", loaiGheID);
-
                         int count = cmd.ExecuteNonQuery();
                         MessageBox.Show($"{count} ghế ngồi đã được cập nhật thành công!");
                         LoadGheNgoiList(); // Làm mới danh sách ghế ngồi
@@ -933,8 +1063,13 @@ namespace QuanLyRapPhimv2
             }
         }
 
+
         private void btnXoaGhe_Click(object sender, EventArgs e)
         {
+            string idGhe = txtMaGhe1.Text;
+
+            string connectionSTR = "Data Source=HUYNHTHANG\\SQLEXPRESS;Initial Catalog=QuanlyRapChieuPhimV2;Integrated Security=True";
+
             using (SqlConnection connection = new SqlConnection(connectionSTR))
             {
                 connection.Open();
@@ -942,12 +1077,10 @@ namespace QuanLyRapPhimv2
 
                 using (SqlCommand cmd = new SqlCommand(sqlDelete, connection))
                 {
+                    cmd.Parameters.AddWithValue("@id", idGhe);
+
                     try
                     {
-                        int id = int.Parse(txtMaGhe1.Text);
-
-                        cmd.Parameters.AddWithValue("@id", id);
-
                         int count = cmd.ExecuteNonQuery();
                         MessageBox.Show($"{count} ghế ngồi đã được xóa thành công!");
                         LoadGheNgoiList(); // Làm mới danh sách ghế ngồi
@@ -959,6 +1092,7 @@ namespace QuanLyRapPhimv2
                 }
             }
         }
+
 
 
 
@@ -1162,6 +1296,10 @@ namespace QuanLyRapPhimv2
 
         private void btnXoa3_Click(object sender, EventArgs e)
         {
+            int id = int.Parse(txtMaMonAn.Text.Trim());
+
+            string connectionSTR = "Data Source=HUYNHTHANG\\SQLEXPRESS;Initial Catalog=QuanlyRapChieuPhimV2;Integrated Security=True";
+
             using (SqlConnection connection = new SqlConnection(connectionSTR))
             {
                 connection.Open();
@@ -1169,22 +1307,13 @@ namespace QuanLyRapPhimv2
 
                 using (SqlCommand cmd = new SqlCommand(sqlDelete, connection))
                 {
+                    cmd.Parameters.AddWithValue("@id", id);
+
                     try
                     {
-                        // Kiểm tra dữ liệu nhập liệu
-                        int id = int.Parse(txtMaMonAn.Text.Trim());
-
-                        if (id <= 0)
-                        {
-                            MessageBox.Show("Vui lòng nhập ID món ăn hợp lệ.");
-                            return;
-                        }
-
-                        cmd.Parameters.AddWithValue("@id", id);
-
                         int count = cmd.ExecuteNonQuery();
                         MessageBox.Show($"{count} món ăn đã được xóa thành công!");
-                        LoadMonAnList(); // Làm mới danh sách món ăn
+                        LoadMonAnList(); // Refresh the food list
                     }
                     catch (Exception ex)
                     {
@@ -1193,6 +1322,9 @@ namespace QuanLyRapPhimv2
                 }
             }
         }
+
+
+
 
 
         private void btnThem5_Click(object sender, EventArgs e)
@@ -1240,38 +1372,30 @@ namespace QuanLyRapPhimv2
 
         private void btnThem3_Click(object sender, EventArgs e)
         {
+            int id = int.Parse(txtMaMonAn.Text.Trim());
+            string ten = txtTenMonAn.Text.Trim();
+            decimal gia = decimal.Parse(txtGiaMonAn.Text.Trim());
+            int loaiMonAnID = (int)cbLoaiMonAn.SelectedValue;
+
+            string connectionSTR = "Data Source=HUYNHTHANG\\SQLEXPRESS;Initial Catalog=QuanlyRapChieuPhimV2;Integrated Security=True";
+
             using (SqlConnection connection = new SqlConnection(connectionSTR))
             {
                 connection.Open();
-                string sqlInsert = @"
-            INSERT INTO mon_an (id, ten, gia, loai_mon_an_id)
-            VALUES (@id, @ten, @gia, @loai_mon_an_id)";
+                string sqlInsert = "INSERT INTO mon_an (id, ten, gia, loai_mon_an_id) VALUES (@id, @ten, @gia, @loai_mon_an_id)";
 
                 using (SqlCommand cmd = new SqlCommand(sqlInsert, connection))
                 {
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@ten", ten);
+                    cmd.Parameters.AddWithValue("@gia", gia);
+                    cmd.Parameters.AddWithValue("@loai_mon_an_id", loaiMonAnID);
+
                     try
                     {
-                        // Kiểm tra dữ liệu nhập liệu
-                        int id = int.Parse(txtMaMonAn.Text.Trim());
-                        string ten = txtTenMonAn.Text.Trim();
-                        decimal gia = decimal.Parse(txtGiaMonAn.Text.Trim());
-                        int loaiMonAnID = (int)cbLoaiMonAn.SelectedValue;
-
-                        // Kiểm tra nếu có trường nào bị rỗng
-                        if (string.IsNullOrEmpty(ten) || gia <= 0)
-                        {
-                            MessageBox.Show("Vui lòng nhập đầy đủ thông tin và đảm bảo thông tin hợp lệ.");
-                            return;
-                        }
-
-                        cmd.Parameters.AddWithValue("@id", id);
-                        cmd.Parameters.AddWithValue("@ten", ten);
-                        cmd.Parameters.AddWithValue("@gia", gia);
-                        cmd.Parameters.AddWithValue("@loai_mon_an_id", loaiMonAnID);
-
                         int count = cmd.ExecuteNonQuery();
                         MessageBox.Show($"{count} món ăn đã được thêm thành công!");
-                        LoadMonAnList(); // Làm mới danh sách món ăn
+                        LoadMonAnList(); // Refresh the food list
                     }
                     catch (Exception ex)
                     {
@@ -1281,41 +1405,34 @@ namespace QuanLyRapPhimv2
             }
         }
 
+
+
         private void btnSua3_Click(object sender, EventArgs e)
         {
+            int id = int.Parse(txtMaMonAn.Text.Trim());
+            string ten = txtTenMonAn.Text.Trim();
+            decimal gia = decimal.Parse(txtGiaMonAn.Text.Trim());
+            int loaiMonAnID = (int)cbLoaiMonAn.SelectedValue;
+
+            string connectionSTR = "Data Source=HUYNHTHANG\\SQLEXPRESS;Initial Catalog=QuanlyRapChieuPhimV2;Integrated Security=True";
+
             using (SqlConnection connection = new SqlConnection(connectionSTR))
             {
                 connection.Open();
-                string sqlUpdate = @"
-            UPDATE mon_an
-            SET ten = @ten, gia = @gia, loai_mon_an_id = @loai_mon_an_id
-            WHERE id = @id";
+                string sqlUpdate = "UPDATE mon_an SET ten = @ten, gia = @gia, loai_mon_an_id = @loai_mon_an_id WHERE id = @id";
 
                 using (SqlCommand cmd = new SqlCommand(sqlUpdate, connection))
                 {
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@ten", ten);
+                    cmd.Parameters.AddWithValue("@gia", gia);
+                    cmd.Parameters.AddWithValue("@loai_mon_an_id", loaiMonAnID);
+
                     try
                     {
-                        // Kiểm tra dữ liệu nhập liệu
-                        int id = int.Parse(txtMaMonAn.Text.Trim());
-                        string ten = txtTenMonAn.Text.Trim();
-                        decimal gia = decimal.Parse(txtGiaMonAn.Text.Trim());
-                        int loaiMonAnID = (int)cbLoaiMonAn.SelectedValue;
-
-                        // Kiểm tra nếu có trường nào bị rỗng
-                        if (string.IsNullOrEmpty(ten) || gia <= 0)
-                        {
-                            MessageBox.Show("Vui lòng nhập đầy đủ thông tin và đảm bảo thông tin hợp lệ.");
-                            return;
-                        }
-
-                        cmd.Parameters.AddWithValue("@id", id);
-                        cmd.Parameters.AddWithValue("@ten", ten);
-                        cmd.Parameters.AddWithValue("@gia", gia);
-                        cmd.Parameters.AddWithValue("@loai_mon_an_id", loaiMonAnID);
-
                         int count = cmd.ExecuteNonQuery();
                         MessageBox.Show($"{count} món ăn đã được cập nhật thành công!");
-                        LoadMonAnList(); // Làm mới danh sách món ăn
+                        LoadMonAnList(); // Refresh the food list
                     }
                     catch (Exception ex)
                     {
@@ -1324,6 +1441,10 @@ namespace QuanLyRapPhimv2
                 }
             }
         }
+
+
+
+
 
 
         private void tpMonAn_Click(object sender, EventArgs e)
@@ -1432,9 +1553,186 @@ namespace QuanLyRapPhimv2
             }
         }
 
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            string maPhim = txtMaPhim.Text;
+            string tenPhim = txtTenPhim.Text;
+            string thoiLuong = txtThoiLuong.Text;
+            int idLoaiPhim = int.Parse(cbLoaiPhim.SelectedValue.ToString());
+
+            string connectionSTR = "Data Source=HUYNHTHANG\\SQLEXPRESS;Initial Catalog=QuanlyRapChieuPhimV2;Integrated Security=True";
+
+            using (SqlConnection connection = new SqlConnection(connectionSTR))
+            {
+                connection.Open();
+                string query = "INSERT INTO dbo.Phim (id, ten, thoi_luong, loai_phim_id) VALUES (@MaPhim, @TenPhim, @ThoiLuong, @IDLoaiPhim)";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@MaPhim", maPhim);
+                    command.Parameters.AddWithValue("@TenPhim", tenPhim);
+                    command.Parameters.AddWithValue("@ThoiLuong", thoiLuong);
+                    command.Parameters.AddWithValue("@IDLoaiPhim", idLoaiPhim);
+
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("Thêm phim thành công!");
+
+                        
+                        LoadPhimList();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi khi thêm phim: " + ex.Message);
+                    }
+                }
+            }
+        }
+
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            string maPhim = txtMaPhim.Text;
+            string tenPhim = txtTenPhim.Text;
+            string thoiLuong = txtThoiLuong.Text;
+            int idLoaiPhim = int.Parse(cbLoaiPhim.SelectedValue.ToString());
+
+            string connectionSTR = "Data Source=HUYNHTHANG\\SQLEXPRESS;Initial Catalog=QuanlyRapChieuPhimV2;Integrated Security=True";
+
+            using (SqlConnection connection = new SqlConnection(connectionSTR))
+            {
+                connection.Open();
+                string query = "UPDATE dbo.Phim SET ten = @TenPhim, thoi_luong = @ThoiLuong, loai_phim_id = @IDLoaiPhim WHERE id = @MaPhim";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@MaPhim", maPhim);
+                    command.Parameters.AddWithValue("@TenPhim", tenPhim);
+                    command.Parameters.AddWithValue("@ThoiLuong", thoiLuong);
+                    command.Parameters.AddWithValue("@IDLoaiPhim", idLoaiPhim);
+
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("Cập nhật phim thành công!");
+
+                        // Refresh the DataGridView
+                        LoadPhimList();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi khi cập nhật phim: " + ex.Message);
+                    }
+                }
+            }
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            string maPhim = txtMaPhim.Text;
+
+            string connectionSTR = "Data Source=HUYNHTHANG\\SQLEXPRESS;Initial Catalog=QuanlyRapChieuPhimV2;Integrated Security=True";
+
+            using (SqlConnection connection = new SqlConnection(connectionSTR))
+            {
+                connection.Open();
+                string query = "DELETE FROM dbo.Phim WHERE id = @MaPhim";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@MaPhim", maPhim);
+
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("Xóa phim thành công!");
+
+                        // Refresh the DataGridView
+                        LoadPhimList();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi khi xóa phim: " + ex.Message);
+                    }
+                }
+            }
+        }
+
+        private void btnThem1_Click(object sender, EventArgs e)
+        {
+            string idPhongChieu = txtMaPhong.Text;
+            int soLuongDay = int.Parse(txtSoLuongDay.Text);
+            int soLuongCot = int.Parse(txtSoLuongCot.Text);
+
+            string connectionSTR = "Data Source=HUYNHTHANG\\SQLEXPRESS;Initial Catalog=QuanlyRapChieuPhimV2;Integrated Security=True";
+
+            using (SqlConnection connection = new SqlConnection(connectionSTR))
+            {
+                connection.Open();
+                string query = "INSERT INTO dbo.phong_chieu (id, so_luong_day, so_luong_cot) VALUES (@IDPhongChieu, @SoLuongDay, @SoLuongCot)";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@IDPhongChieu", idPhongChieu);
+                    command.Parameters.AddWithValue("@SoLuongDay", soLuongDay);
+                    command.Parameters.AddWithValue("@SoLuongCot", soLuongCot);
+
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("Thêm phòng chiếu thành công!");
+
+                        // Refresh the DataGridView
+                        LoadPhongChieuList();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi khi thêm phòng chiếu: " + ex.Message);
+                    }
+                }
+            }
+        }
+
+
+
         private void btnTim5_Click(object sender, EventArgs e)
         {
+            string searchKeyword = txtTim5.Text.Trim();
+
+            string connectionSTR = "Data Source=HUYNHTHANG\\SQLEXPRESS;Initial Catalog=QuanlyRapChieuPhimV2;Integrated Security=True";
+
+            using (SqlConnection connection = new SqlConnection(connectionSTR))
+            {
+                connection.Open();
+                string sqlSearch = "SELECT id, vi_tri_day, vi_tri_cot, da_chon, phong_chieu_id, loai_ghe_id FROM ghe_ngoi WHERE id LIKE '%' + @searchKeyword + '%'";
+
+                using (SqlCommand cmd = new SqlCommand(sqlSearch, connection))
+                {
+                    cmd.Parameters.AddWithValue("@searchKeyword", searchKeyword);
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    dtgvGheNgoi.DataSource = dataTable;
+
+                    // Customize DataGridView appearance (optional)
+                    dtgvGheNgoi.Columns["id"].HeaderText = "ID Ghế Ngồi";
+                    dtgvGheNgoi.Columns["vi_tri_day"].HeaderText = "Vị Trí Dãy";
+                    dtgvGheNgoi.Columns["vi_tri_cot"].HeaderText = "Vị Trí Cột";
+                    dtgvGheNgoi.Columns["da_chon"].HeaderText = "Đã Chọn";
+                    dtgvGheNgoi.Columns["phong_chieu_id"].HeaderText = "ID Phòng Chiếu";
+                    dtgvGheNgoi.Columns["loai_ghe_id"].HeaderText = "ID Loại Ghế";
+
+                    dtgvGheNgoi.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    dtgvGheNgoi.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    dtgvGheNgoi.DefaultCellStyle.Font = new System.Drawing.Font("Arial", 8F);
+                    dtgvGheNgoi.DefaultCellStyle.BackColor = System.Drawing.Color.LightGray;
+                    dtgvGheNgoi.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.White;
+                    dtgvGheNgoi.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+                }
+            }
         }
+
 
         private void data_veDat_CellClick(object sender, DataGridViewCellEventArgs e)
         {

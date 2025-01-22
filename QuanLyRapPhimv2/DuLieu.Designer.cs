@@ -1112,6 +1112,7 @@
             this.btnThem1.TabIndex = 2;
             this.btnThem1.Text = "Thêm";
             this.btnThem1.UseVisualStyleBackColor = true;
+            this.btnThem1.Click += new System.EventHandler(this.btnThem1_Click);
             // 
             // tpPhim
             // 
@@ -1275,6 +1276,7 @@
             this.btnSua.TabIndex = 3;
             this.btnSua.Text = "Sửa";
             this.btnSua.UseVisualStyleBackColor = true;
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
             // btnXoa
             // 
@@ -1284,6 +1286,7 @@
             this.btnXoa.TabIndex = 2;
             this.btnXoa.Text = "Xóa";
             this.btnXoa.UseVisualStyleBackColor = true;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // btnThem
             // 
@@ -1293,6 +1296,7 @@
             this.btnThem.TabIndex = 1;
             this.btnThem.Text = "Thêm";
             this.btnThem.UseVisualStyleBackColor = true;
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // dtgvPhim
             // 
