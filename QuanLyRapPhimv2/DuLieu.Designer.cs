@@ -175,6 +175,8 @@
             this.txtMaGia = new System.Windows.Forms.TextBox();
             this.txtTim4 = new System.Windows.Forms.TextBox();
             this.btnTim4 = new System.Windows.Forms.Button();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btn_ThongKe = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.loaimonanBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.quanLyRapDataSet)).BeginInit();
             this.tpKhachHang.SuspendLayout();
@@ -210,6 +212,7 @@
             this.panel10.SuspendLayout();
             this.panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.data_veDat)).BeginInit();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // loaimonanBindingSource
@@ -1318,6 +1321,7 @@
             this.tpVe.Controls.Add(this.tpLoaiGhe);
             this.tpVe.Controls.Add(this.tpNhanVien);
             this.tpVe.Controls.Add(this.tpKhachHang);
+            this.tpVe.Controls.Add(this.tabPage1);
             this.tpVe.Location = new System.Drawing.Point(12, 12);
             this.tpVe.Name = "tpVe";
             this.tpVe.SelectedIndex = 0;
@@ -1676,6 +1680,30 @@
             this.btnTim4.UseVisualStyleBackColor = true;
             this.btnTim4.Click += new System.EventHandler(this.btnTim4_Click);
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.btn_ThongKe);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1004, 464);
+            this.tabPage1.TabIndex = 8;
+            this.tabPage1.Text = "Thống kê";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btn_ThongKe
+            // 
+            this.btn_ThongKe.BackColor = System.Drawing.Color.CadetBlue;
+            this.btn_ThongKe.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_ThongKe.ForeColor = System.Drawing.Color.White;
+            this.btn_ThongKe.Location = new System.Drawing.Point(358, 144);
+            this.btn_ThongKe.Name = "btn_ThongKe";
+            this.btn_ThongKe.Size = new System.Drawing.Size(231, 134);
+            this.btn_ThongKe.TabIndex = 49;
+            this.btn_ThongKe.Text = "Thống kê doanh thu";
+            this.btn_ThongKe.UseVisualStyleBackColor = false;
+            this.btn_ThongKe.Click += new System.EventHandler(this.btn_ThongKe_Click);
+            // 
             // DuLieu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1736,6 +1764,7 @@
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.data_veDat)).EndInit();
+            this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1887,5 +1916,7 @@
         private System.Windows.Forms.Button btnCapNhat;
         private System.Windows.Forms.Button btnXoaVe;
         private System.Windows.Forms.Button btnDatVe;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.Button btn_ThongKe;
     }
 }

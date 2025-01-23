@@ -1693,7 +1693,11 @@ namespace QuanLyRapPhimv2
             }
         }
 
-
+        private void btn_ThongKe_Click(object sender, EventArgs e)
+        {
+            ThongKeHoaDon thongKeHoaDon = new ThongKeHoaDon();
+            thongKeHoaDon.ShowDialog();
+        }
 
         private void btnTim5_Click(object sender, EventArgs e)
         {
